@@ -752,7 +752,6 @@ Panel {
     }
 
     Item {
-    Item {
       width: parent.width
       implicitHeight: Math.max(quotaDetail.implicitHeight, resetText.implicitHeight)
 
@@ -782,6 +781,10 @@ Panel {
         color: root.dim
         font.family: root.fontFamily
         font.pixelSize: Style.font.caption
+        elide: Text.ElideRight
+        // Cap the reset countdown so a long label or duration cannot starve
+        // the detail text on the left. Detail gives way first when both overflow.
+        width: Math.min(implicitWidth, parent.width * 0.55)
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
       }
